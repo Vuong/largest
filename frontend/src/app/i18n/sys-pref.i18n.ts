@@ -1,6 +1,6 @@
 import { SysPreference } from 'picsur-shared/dist/dto/sys-preferences.enum';
 
-export const SysPreferenceUI: {
+export let SysPreferenceUI: {
   [key in SysPreference]: {
     name: string;
     helpText: string;
