@@ -54,13 +54,13 @@ export class PaginatorComponent implements OnInit {
     ];
 
     if (this.pagesRange[0] < 1) {
-      const offset = 1 - this.pagesRange[0];
+      let offset = 1 - this.pagesRange[0];
       this.pagesRange[0] += offset;
       this.pagesRange[1] += offset;
     }
 
     if (this.pagesRange[1] > this.totalPages) {
-      const offset = this.pagesRange[1] - this.totalPages;
+      let offset = this.pagesRange[1] - this.totalPages;
       this.pagesRange[0] -= offset;
       this.pagesRange[1] -= offset;
     }
@@ -72,7 +72,7 @@ export class PaginatorComponent implements OnInit {
       this.firstPagesRange = null;
     }
 
-    const lastPage = this.totalPages - this.shownLastPages + 1;
+    let lastPage = this.totalPages - this.shownLastPages + 1;
     if (this.pagesRange[1] < lastPage) {
       this.pagesRange[1] -= 1 + this.shownLastPages;
       this.lastPagesRange = [lastPage, this.totalPages];
