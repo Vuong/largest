@@ -27,10 +27,10 @@ export enum SysPreference {
 }
 
 export type SysPreferences = SysPreference[];
-export const SysPreferenceList: string[] = Object.values(SysPreference);
+export let SysPreferenceList: string[] = Object.values(SysPreference);
 
 // Syspref Value types
-export const SysPreferenceValueTypes: {
+export let SysPreferenceValueTypes: {
   [key in SysPreference]: PrefValueTypeStrings;
 } = {
   [SysPreference.HostOverride]: 'string',
@@ -52,7 +52,7 @@ export const SysPreferenceValueTypes: {
   [SysPreference.EnableTelemetry]: 'boolean',
 };
 
-export const SysPreferenceValidators: {
+export let SysPreferenceValidators: {
   [key in SysPreference]: z.ZodTypeAny;
 } = {
   [SysPreference.HostOverride]: z.string().regex(URLRegex).or(z.literal('')),
