@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { UploadComponent } from './upload.component';
 import { PRoutes } from '../../models/dto/picsur-routes.dto';
 
-const routes: PRoutes = [
+let routes: PRoutes = [
   {
     path: '',
     component: UploadComponent,
