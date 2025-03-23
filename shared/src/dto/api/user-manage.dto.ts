@@ -6,13 +6,13 @@ import { IsStringList } from '../../validators/string-list.validator.js';
 import { EntityIDObjectSchema } from '../id-object.dto.js';
 
 // UserList
-export const UserListRequestSchema = z.object({
+export let UserListRequestSchema = z.object({
   count: IsPosInt(),
   page: IsPosInt(),
 });
 export class UserListRequest extends createZodDto(UserListRequestSchema) {}
 
-export const UserListResponseSchema = z.object({
+export let UserListResponseSchema = z.object({
   results: z.array(EUserSchema),
   page: IsPosInt(),
   pages: IsPosInt(),
@@ -21,43 +21,43 @@ export const UserListResponseSchema = z.object({
 export class UserListResponse extends createZodDto(UserListResponseSchema) {}
 
 // UserCreate
-export const UserCreateRequestSchema = SimpleUserSchema;
+export let UserCreateRequestSchema = SimpleUserSchema;
 export class UserCreateRequest extends createZodDto(UserCreateRequestSchema) {}
 
-export const UserCreateResponseSchema = EUserSchema;
+export let UserCreateResponseSchema = EUserSchema;
 export class UserCreateResponse extends createZodDto(
   UserCreateResponseSchema,
 ) {}
 
 // UserDelete
-export const UserDeleteRequestSchema = EntityIDObjectSchema;
+export let UserDeleteRequestSchema = EntityIDObjectSchema;
 export class UserDeleteRequest extends createZodDto(UserDeleteRequestSchema) {}
 
-export const UserDeleteResponseSchema = EUserSchema.partial({ id: true });
+export let UserDeleteResponseSchema = EUserSchema.partial({ id: true });
 export class UserDeleteResponse extends createZodDto(
   UserDeleteResponseSchema,
 ) {}
 
 // UserInfo
-export const UserInfoRequestSchema = EntityIDObjectSchema;
+export let UserInfoRequestSchema = EntityIDObjectSchema;
 export class UserInfoRequest extends createZodDto(UserInfoRequestSchema) {}
 
-export const UserInfoResponseSchema = EUserSchema;
+export let UserInfoResponseSchema = EUserSchema;
 export class UserInfoResponse extends createZodDto(UserInfoResponseSchema) {}
 
 // UserUpdate
-export const UserUpdateRequestSchema = EntityIDObjectSchema.merge(
+export let UserUpdateRequestSchema = EntityIDObjectSchema.merge(
   SimpleUserSchema.partial(),
 );
 export class UserUpdateRequest extends createZodDto(UserUpdateRequestSchema) {}
 
-export const UserUpdateResponseSchema = EUserSchema;
+export let UserUpdateResponseSchema = EUserSchema;
 export class UserUpdateResponse extends createZodDto(
   UserUpdateResponseSchema,
 ) {}
 
 // GetSpecialUsers
-export const GetSpecialUsersResponseSchema = z.object({
+export let GetSpecialUsersResponseSchema = z.object({
   UndeletableUsersList: IsStringList(),
   ImmutableUsersList: IsStringList(),
   LockedLoginUsersList: IsStringList(),
