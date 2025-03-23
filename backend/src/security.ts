@@ -1,6 +1,6 @@
 import { FastifyHelmetOptions } from '@fastify/helmet';
 
-export const HelmetOptions: FastifyHelmetOptions = {
+export let HelmetOptions: FastifyHelmetOptions = {
   contentSecurityPolicy: {
     directives: {
       'default-src': ["'self'"],
