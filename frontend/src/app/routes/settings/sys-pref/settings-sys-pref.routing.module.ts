@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { SettingsSysprefComponent } from './settings-sys-pref.component';
 import { PRoutes } from '../../../models/dto/picsur-routes.dto';
 
-const routes: PRoutes = [
+let routes: PRoutes = [
   {
     path: '',
     component: SettingsSysprefComponent,
