@@ -23,9 +23,9 @@ export enum AnimFileType {
 
 // Derivatives
 
-export const SupportedImageFileTypes: string[] = Object.values(ImageFileType);
-export const SupportedAnimFileTypes: string[] = Object.values(AnimFileType);
-export const SupportedFileTypes: string[] = Object.values({
+export let SupportedImageFileTypes: string[] = Object.values(ImageFileType);
+export let SupportedAnimFileTypes: string[] = Object.values(AnimFileType);
+export let SupportedFileTypes: string[] = Object.values({
   ...ImageFileType,
   ...AnimFileType,
 });
@@ -44,7 +44,7 @@ export interface FileType {
 
 // -- Mime
 
-const FileType2MimeMap: {
+let FileType2MimeMap: {
   [key in ImageFileType | AnimFileType]: string;
 } = {
   [AnimFileType.GIF]: 'image/gif',
@@ -63,16 +63,16 @@ const FileType2MimeMap: {
   // [ImageFileType.ICO]: 'image/x-icon',
 };
 
-export const Mime2FileType = (mime: string): Failable<string> => {
-  const entries = Object.entries(FileType2MimeMap).filter(
+export let Mime2FileType = (mime: string): Failable<string> => {
+  let entries = Object.entries(FileType2MimeMap).filter(
     ([, v]) => v === mime,
   );
   if (entries.length === 0)
     return Fail(FT.Internal, undefined, `Unsupported mime type: ${mime}`);
   return entries[0][0];
 };
-export const FileType2Mime = (filetype: string): Failable<string> => {
-  const result = FileType2MimeMap[filetype as ImageFileType | AnimFileType];
+export let FileType2Mime = (filetype: string): Failable<string> => {
+  let result = FileType2MimeMap[filetype as ImageFileType | AnimFileType];
   if (result === undefined)
     return Fail(FT.Internal, undefined, `Unsupported filetype: ${filetype}`);
   return result;
@@ -80,7 +80,7 @@ export const FileType2Mime = (filetype: string): Failable<string> => {
 
 // -- Ext
 
-const FileType2ExtMap: {
+let FileType2ExtMap: {
   [key in ImageFileType | AnimFileType]: string;
 } = {
   [AnimFileType.GIF]: 'gif',
@@ -99,15 +99,15 @@ const FileType2ExtMap: {
   // [ImageFileType.ICO]: 'ico',
 };
 
-export const Ext2FileType = (ext: string): Failable<string> => {
-  const entries = Object.entries(FileType2ExtMap).filter(([, v]) => v === ext);
+export let Ext2FileType = (ext: string): Failable<string> => {
+  let entries = Object.entries(FileType2ExtMap).filter(([, v]) => v === ext);
   if (entries.length === 0)
     return Fail(FT.Internal, undefined, `Unsupported ext: ${ext}`);
   return entries[0][0];
 };
 
-export const FileType2Ext = (mime: string): Failable<string> => {
-  const result = FileType2ExtMap[mime as ImageFileType | AnimFileType];
+export let FileType2Ext = (mime: string): Failable<string> => {
+  let result = FileType2ExtMap[mime as ImageFileType | AnimFileType];
   if (result === undefined)
     return Fail(FT.Internal, undefined, `Unsupported mime type: ${mime}`);
   return result;
