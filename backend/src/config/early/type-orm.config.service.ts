@@ -15,7 +15,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
     private readonly configService: ConfigService,
     private readonly hostService: HostConfigService,
   ) {
-    const varOptions = this.getTypeOrmServerOptions();
+    let varOptions = this.getTypeOrmServerOptions();
 
     this.logger.log('DB host: ' + varOptions.host);
     this.logger.log('DB port: ' + varOptions.port);
@@ -26,7 +26,7 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   }
 
   public getTypeOrmServerOptions() {
-    const varOptions = {
+    let varOptions = {
       host: ParseString(
         this.configService.get(`${EnvPrefix}DB_HOST`),
         'localhost',
@@ -49,9 +49,9 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
   }
 
   public createTypeOrmOptions() {
-    const varOptions = this.getTypeOrmServerOptions();
+    let varOptions = this.getTypeOrmServerOptions();
     return {
-      type: 'postgres' as const,
+      type: 'postgres' as let,
       synchronize: !this.hostService.isProduction(),
 
       migrationsRun: true,
